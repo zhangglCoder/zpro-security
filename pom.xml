@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <description>权限框架</description>
     <packaging>pom</packaging>
+    <properties>
+        <zpro-security.version>1.0-SNAPSHOT</zpro-security.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -27,5 +30,7 @@
     <modules>
         <module>security-demo</module>
         <module>security-core</module>
+        <module>security-browser</module>
+        <module>security-app</module>
     </modules>
 </project>
