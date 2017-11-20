@@ -15,16 +15,11 @@ public class DemoController {
 
     @GetMapping
     public ModelAndView index(ModelAndView view) throws IOException {
-        System.out.println("hello");
+        System.out.println("index");
         view.setViewName("index");
         return view;
     }
-    @GetMapping("about")
-    public ModelAndView about(ModelAndView view) throws IOException {
-        System.out.println("about");
-        view.setViewName("about");
-        return view;
-    }
+
     @GetMapping("login")
     public ModelAndView login(ModelAndView view) throws IOException {
         System.out.println("login");
@@ -34,7 +29,7 @@ public class DemoController {
 
     @GetMapping("user")
     @ResponseBody
-    public Authentication user(Authentication authentication){
-        return authentication;
+    public Object user(Authentication authentication){
+        return authentication.getPrincipal();
     }
 }
