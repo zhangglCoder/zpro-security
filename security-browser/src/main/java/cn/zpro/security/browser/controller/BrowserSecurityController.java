@@ -58,10 +58,11 @@ public class BrowserSecurityController {
             logger.info("缓存的URL地址{}",redirectUrl);
             if(StringUtils.endsWithIgnoreCase(redirectUrl,".html")){
                 redirectStrategy.sendRedirect(request,response,securityProperties.getBrowser().getLoginUrl());
-                return null;
+            }else if(StringUtils.endsWithIgnoreCase(redirectUrl,".json")){
+                redirectStrategy.sendRedirect(request,response,securityProperties.getBrowser().getLoginUrl());
             }
         }
-        return new ResponesMsg("访问地址需要服务端身份验证,请引导到登录页面");
+        return new ResponesMsg("访问地址需要服务端身份验证,请清空缓存引导到登录页面:"+securityProperties.getBrowser().getLoginUrl());
     }
 
     @GetMapping("standard_login")

@@ -1,6 +1,6 @@
 package cn.zpro.security.controller;
 
-import org.springframework.security.core.Authentication;
+import cn.zpro.security.browser.support.ResponesMsg;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,7 +13,7 @@ import java.io.IOException;
 @Controller
 public class DemoController {
 
-    @GetMapping
+    @GetMapping("index")
     public ModelAndView index(ModelAndView view) throws IOException {
         System.out.println("index");
         view.setViewName("index");
@@ -27,9 +27,11 @@ public class DemoController {
         return view;
     }
 
-    @GetMapping("user")
+    @GetMapping("abort")
     @ResponseBody
-    public Object user(Authentication authentication){
-        return authentication.getPrincipal();
+    public ResponesMsg abort() throws IOException {
+        System.out.println("abort");
+        return new ResponesMsg("abort数据");
     }
+
 }

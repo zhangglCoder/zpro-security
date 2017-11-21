@@ -22,6 +22,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -32,6 +35,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                .formLogin()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/loginProcessing")
+                .successHandler(authenticationSuccessHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require").permitAll()
