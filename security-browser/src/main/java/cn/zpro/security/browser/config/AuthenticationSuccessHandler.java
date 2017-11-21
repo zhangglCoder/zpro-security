@@ -30,7 +30,8 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
     private ObjectMapper objectMapper;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+            throws ServletException, IOException {
         SavedRequest savedRequest = requestCache.getRequest(request, response);
         if(savedRequest!=null){
             String redirectUrl = savedRequest.getRedirectUrl();
@@ -41,7 +42,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
                 }
                 //返回JSON
                 String valueAsString = objectMapper.writeValueAsString(new ResponesMsg(authentication.getPrincipal()));
-                response.setHeader("Content-Type","text/html; charset=utf-8");
+                response.setContentType("application/json; charset=utf-8");
                 response.getWriter().write(valueAsString);
             }
         }else {
