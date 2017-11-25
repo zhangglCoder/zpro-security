@@ -35,7 +35,6 @@ public class MyUserDetailsService implements UserDetailsService {
         String encode = passwordEncoder.encode("123123");
         logger.info("数据库加密{}",encode);
         //此处应该链接数据库查询用户信息
-        return new User("zhanggl",encode,
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new User("zhanggl",encode,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }
